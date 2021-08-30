@@ -1,6 +1,12 @@
 import json
 from .models import *
 
+def user_status(request):
+    if request.user.is_authenticated:
+        return True
+    else:
+        return False
+
 def cookieCart(request):
     # this block is defined to handle a guest user data
     try:
@@ -54,15 +60,22 @@ def cartData(request):
         cartItems = cookieData['cartItems']
         order = cookieData['order']
         items = cookieData['items']
-    return {
-        'cartItems':cartItems, 
-        'order': order,
-        'items':items
-    }
+
+    if request.user.is_authenticated:
+        return {
+            'cartItems':cartItems, 
+            'order': order,
+            'items':items,
+            'customer': customer
+        }
+    else:
+        return {
+            'cartItems':cartItems, 
+            'order': order,
+            'items':items,
+        }
 
 def guestUserOrder(request, data):
-    print('User is not logged in!')
-    print('Cookies:', request.COOKIES)
     name = data['form']['name']
     email = data['form']['email']
 

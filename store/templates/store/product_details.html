@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product.name}}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles/product_details.css' %}">
+</head>
+<body>
+    
+    <main>
+        <article>
+            <img id="main-image" src="{{product.image.url}}" alt="">
+
+            <section id="location">
+                <h2>Product: {{product.name}}</h2>
+                <h2>Price: {{product.price}}₺</h2>
+                <address>
+                    <h3>The maximum number of this item that can be shipped at a goal is <span>{{product.allowed4shipping}}</span></h3>
+                </address>
+            </section>
+
+            <section id="details">
+                <h2>Product Description</h2>
+                <p><strong>{{ product.description }}</strong></p>
+                <hr>
+                <footer>
+                    <h3>Need more information? Please <a href="mailto:{{ product.sellers_email }}">contact the seller</a></h3>
+                    <h2><a href="{% url 'store' %}" class="btn">Back to  Products</a></h2>
+                </footer>
+            </section>
+        </article>
+    </main>
+    
+</body>
+</html>

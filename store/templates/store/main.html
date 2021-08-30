@@ -73,8 +73,16 @@
        
           </ul>
           <div class="form-inline my-2 my-lg-0">
-               <a href="{% url 'login' %}"class="btn btn-warning">Login</a>
-               
+              {% if user_is_logged %}
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <h5 class="nav-link">Welcome, {{ customer_name }}! <span class="sr-only">(current)</span></h5>
+                </li>
+              </ul>
+               <a href="{% url 'logout' %}"class="btn btn-warning">Logout</a>
+              {% else %}
+                <a href="{% url 'login' %}"class="btn btn-warning">Login</a>
+              {% endif %}
                <a href="{% url 'cart' %}">
                   <img  id="cart-icon" src="{% static 'store/images/cart.png' %}">
               </a>
