@@ -1,2 +1,2 @@
-web: gunicorn BuyAfriq.wsgi --log-file-
+web: gunicorn BuyAfriq.wsgi --log-file -
 
