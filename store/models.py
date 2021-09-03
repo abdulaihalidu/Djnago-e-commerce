@@ -14,6 +14,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     slug = models.SlugField(unique=True)
     description = models.CharField(max_length=1000, blank=True, null=True)
+    quantity = models.IntegerField(null=True, blank=True)
     allowed4shipping = models.IntegerField(default=10)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='images')
